@@ -2,6 +2,8 @@ Binaries
 DerivedDataCache
 Intermediate
 Saved
+Plugins
+WindowsNoEditor
 .vscode
 .vs
 *.VC.db
