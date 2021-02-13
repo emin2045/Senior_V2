@@ -6,7 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "Launcher.generated.h"
 
+class UStaticMeshComponent;
 class UBoxComponent;
+class UAudioComponent;
 
 UCLASS()
 class SENIOR_V2_API ALauncher : public AActor
@@ -20,16 +22,25 @@ public:
 
 protected:
 
-	UPROPERTY(VisibleAnywhere, Category = "Properties")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UStaticMeshComponent* MeshComp;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UBoxComponent* OverlapComp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Properties")
-	float Angle;
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UAudioComponent* AudioComp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Properties")
-	float Strength;
+	UPROPERTY(EditInstanceOnly, Category = "Properties")
+	float LaunchStrength;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "Properties")
+	float LaunchPitchAngle;
 
 	UFUNCTION()
-	void OverlapLauncher(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void OverlapLaunchPad(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	UFUNCTION()
+	virtual void BeginPlay() override;
+	
 };

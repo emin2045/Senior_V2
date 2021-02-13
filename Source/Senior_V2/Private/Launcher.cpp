@@ -3,38 +3,49 @@
 
 #include "Launcher.h"
 
+#include "Components/AudioComponent.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Character.h"
-#include "Kismet/KismetMathLibrary.h"
+#include "Components/SceneComponent.h"
 
 // Sets default values
 ALauncher::ALauncher()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
-
-	OverlapComp = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapComp"));	// box componentimiz
-	OverlapComp->SetBoxExtent(FVector(32, 32, 32));
+	OverlapComp = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapComp"));
+	OverlapComp->SetBoxExtent(FVector(75, 75, 50));
 	RootComponent = OverlapComp;
 
-	OverlapComp->OnComponentBeginOverlap.AddDynamic(this, &ALauncher::OverlapLauncher); // &&&
+	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
+	MeshComp->SetupAttachment(RootComponent);
 
-	Strength = 2000.0;
-	Angle = 60.f; // 
+	AudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AudioComp"));
+	AudioComp->SetupAttachment(RootComponent);
 
+	OverlapComp->OnComponentBeginOverlap.AddDynamic(this, &ALauncher::OverlapLaunchPad);
+
+	LaunchStrength = 1500;
+	LaunchPitchAngle = 35;
 }
 
-void ALauncher::OverlapLauncher(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ALauncher::OverlapLaunchPad(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	ACharacter* MyCharacter = Cast<ACharacter>(OtherActor);
+	FRotator LaunchDirection = GetActorRotation();
+	LaunchDirection.Pitch += LaunchPitchAngle;
+	FVector LaunchVelocity = LaunchDirection.Vector() * LaunchStrength;
 
-	if (MyCharacter) 
+	ACharacter* OtherCharacter = Cast<ACharacter>(OtherActor);
+	if (OtherCharacter)
 	{
-		FRotator Direction = MyCharacter->GetActorRotation();
-		Direction.Pitch += Angle; // Pitch = Pitch + Angle
-		FVector LaunchVelocity = UKismetMathLibrary::GetForwardVector(Direction) * Strength;
-
-		MyCharacter->LaunchCharacter(LaunchVelocity, true, true);	// ctrl + k + d
+		OtherCharacter->LaunchCharacter(LaunchVelocity, true, true);
+		AudioComp->Play();
 	}
+}
+
+void ALauncher::BeginPlay()
+{
+	Super::BeginPlay();
+
+	FRotator NewRotation(0, -90, LaunchPitchAngle * -1);
+
+	MeshComp->SetRelativeRotation(NewRotation, false, nullptr, ETeleportType::None);
 }
