@@ -20,7 +20,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(VisibleAnywhere, Category = "MovingCube")
+	UPROPERTY(BlueprintReadWrite,VisibleAnywhere, Category = "MovingCube")
 	UStaticMeshComponent* MeshComp;
 	
 	UPROPERTY(EditAnywhere,Category="Target")
