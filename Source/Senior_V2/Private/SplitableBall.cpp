@@ -36,7 +36,7 @@ ASplitableBall::ASplitableBall()
 	ProjectileMovementComp->bShouldBounce = false;
 
 	bReplicates = true;
-	SetReplicateMovement(true);
+	SetReplicateMovement(false);
 	InitialLifeSpan = 1.4f;
 
 	CollisionComp->OnComponentHit.AddDynamic(this, &ASplitableBall::ApplyDamageToCube);

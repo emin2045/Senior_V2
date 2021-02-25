@@ -32,7 +32,7 @@ AFireball::AFireball()
 	ProjectileMovementComp->bShouldBounce = false;
 
 	bReplicates = true;
-	SetReplicateMovement(true);
+	SetReplicateMovement(false);
 	InitialLifeSpan = 14.2f;
 
 	CollisionComp->OnComponentHit.AddDynamic(this, &AFireball::ApplyDamageToCube);

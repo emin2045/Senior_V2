@@ -30,7 +30,7 @@ ABounceBall::ABounceBall()
 	ProjectileMovementComp->Bounciness = 1.f;
 
 	bReplicates = true;
-	SetReplicateMovement(true);
+	SetReplicateMovement(false);
 
 	BounceHealth = 4;
 	CollisionComp->OnComponentHit.AddDynamic(this, &ABounceBall::ApplyDamageToCube);
