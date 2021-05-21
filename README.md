@@ -35,9 +35,13 @@ A:  To be last standing man by destroy the things what are below enemy by shooti
 Q:  Firing mechanics:
 
 A:  There are four firing form.
---> Normal Speed & Long Lifetime & Non Bouncing & No Gravity 
+
+--> Normal Speed & Long Lifetime & Non Bouncing & No Gravity
+ 
 --> Normal Speed & Normal Lifetime & Bouncy & Gravity Enabled 
+
 --> High Speed & Short Lifetime & Non Bouncing & No Gravity
+
 --> Low Speed & Short Lifetime & Non Bouncing & Can Split
 
 --------------
