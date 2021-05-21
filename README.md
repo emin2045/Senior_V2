@@ -44,9 +44,13 @@ A:  There are four firing form.
 
 Q:  How to?
 
-A:  There are launchpads. 
+A:  
+
+    There are launchpads.
+ 
     Also you can jump. As well as two times.
-    Forward Dash & Backdash.
+
+    With Forward Dash & Backdash.
 
 --------------
 
