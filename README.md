@@ -7,6 +7,8 @@ This is my graduation project at university that I started to develop in 2020 an
 
 NOTE: Advanced Sessions Plugin is in gitignore, you can download from here:  https://drive.google.com/file/d/1dbTSdf6sbf700FaQqV6vajK0PvYTmjna
 
+Project Engine Version: 4.25
+
 --------------
 
 Q:  Single player or Multiplayer?
