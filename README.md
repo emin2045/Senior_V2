@@ -5,6 +5,8 @@ Developed with Unreal Engine 4
 
 This is my graduation project at university that I started to develop in 2020 and it's been developing in 2021.
 
+NOTE: Advanced Sessions Plugin is in gitignore, you can download from here:  https://drive.google.com/file/d/1dbTSdf6sbf700FaQqV6vajK0PvYTmjna
+
 --------------
 
 Q:  Single player or Multiplayer?
