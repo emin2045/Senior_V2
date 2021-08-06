@@ -46,16 +46,6 @@ A:  There are four firing form.
 
 --------------
 
-Q:  How to?
-
-A:  
-
-    There are launchpads.
- 
-    Also you can jump. As well as two times.
-
-    With Forward Dash & Backdash.
-
 --------------
 
 Including Steam Lobby Session
